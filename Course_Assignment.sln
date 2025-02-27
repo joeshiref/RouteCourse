@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "G43_G02_ADV05", "G43_G02_AD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "C43_G02_LINQ01", "C43_G02_LINQ01\C43_G02_LINQ01.csproj", "{AEDDA2B5-BA0F-4B1D-94D2-C68BEF08673C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "C43_G02_EF02", "C43_G02_EF02\C43_G02_EF02.csproj", "{5A02280C-BB1E-4AB0-85EB-0A18AC9BAAEB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,10 @@ Global
 		{AEDDA2B5-BA0F-4B1D-94D2-C68BEF08673C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AEDDA2B5-BA0F-4B1D-94D2-C68BEF08673C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AEDDA2B5-BA0F-4B1D-94D2-C68BEF08673C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A02280C-BB1E-4AB0-85EB-0A18AC9BAAEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A02280C-BB1E-4AB0-85EB-0A18AC9BAAEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A02280C-BB1E-4AB0-85EB-0A18AC9BAAEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A02280C-BB1E-4AB0-85EB-0A18AC9BAAEB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
