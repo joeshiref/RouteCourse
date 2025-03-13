@@ -13,5 +13,11 @@ namespace C43_G02_EF02.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public int? Top_ID { get; set; }
+
+        public ICollection<Stud_Course> StudCourses { get; set; }
+
+        public ICollection<Course_Inst> CourseInstructors { get; set; }
+
+
     }
 }

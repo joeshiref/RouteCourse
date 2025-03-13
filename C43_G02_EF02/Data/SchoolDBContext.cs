@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using C43_G02_EF02.Models;
+using C43_G02_EF02.Configurations;
 
 namespace C43_G02_EF02.Data
 {
@@ -14,10 +15,12 @@ namespace C43_G02_EF02.Data
         
         override protected void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            
+
         }
         override protected void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.ApplyConfiguration(new StudentConfigurations());
+
             modelBuilder.Entity<Course>()
                 .ToTable("CoursesTable")
                 .Property(c => c.Name)
@@ -36,6 +39,9 @@ namespace C43_G02_EF02.Data
 
             modelBuilder.Entity<Topic>()
                 .ToTable("TopicsTable");
+
+            modelBuilder.Entity<Stud_Course>()
+                .HasKey(sc => new { sc.Stud_ID, sc.Course_ID });
         }
         public DbSet<Student> Students { get; set; }
         public DbSet<Course> Courses { get; set; }

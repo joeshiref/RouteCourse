@@ -18,5 +18,7 @@ namespace C43_G02_EF02.Models
         public int Ins_ID { get; set; }
 
         public DateTime HiringDate { get; set; }
+
+        public ICollection<Student> Students { get; set; }
     }
 }

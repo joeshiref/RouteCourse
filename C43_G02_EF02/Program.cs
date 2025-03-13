@@ -8,7 +8,7 @@ namespace C43_G02_EF02
         {
             using (var context = new SchoolDBContext())
             {
-                //context.Sutdents.Where(s => s.FName == "Ali").ToList();
+
             }
         }
     }

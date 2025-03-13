@@ -14,5 +14,7 @@ namespace C43_G02_EF02.Models
 
         [Required, MaxLength(100)]
         public string Name { get; set; }
+
+        public ICollection<Course> Courses { get; set; }
     }
 }
