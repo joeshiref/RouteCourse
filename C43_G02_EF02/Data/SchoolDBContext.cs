@@ -15,7 +15,7 @@ namespace C43_G02_EF02.Data
         
         override protected void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-
+            optionsBuilder.UseSqlServer("Server=CPC-youkh-QCOP2;Database=SchoolDB;Integrated Security=true;TrustServerCertificate=True;");
         }
         override protected void OnModelCreating(ModelBuilder modelBuilder)
         {
