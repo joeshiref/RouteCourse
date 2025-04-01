@@ -27,13 +27,13 @@ app.MapStaticAssets();
 //     pattern: "{controller=Home}/{action=Index}/{id?}")
 //     .WithStaticAssets();
 
-app.MapGet("/", async (HttpContext context) => {
-    await context.Response.WriteAsync("Hello World from root endpoint!");
-});
+// app.MapGet("/", async (HttpContext context) => {
+//     await context.Response.WriteAsync("Hello World from root endpoint!");
+// });
 
-app.MapGet("/test",async (HttpContext context) => {
-    await context.Response.WriteAsync("Hello World from test endpoint!");
-});
+// app.MapGet("/test",async (HttpContext context) => {
+//     await context.Response.WriteAsync("Hello World from test endpoint!");
+// });
 
 
 
@@ -46,7 +46,7 @@ app.MapGet("/test",async (HttpContext context) => {
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller}/{action}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
     
 
