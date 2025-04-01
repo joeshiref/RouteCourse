@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "C43_G02_LINQ01", "C43_G02_L
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "C43_G02_EF02", "C43_G02_EF02\C43_G02_EF02.csproj", "{5A02280C-BB1E-4AB0-85EB-0A18AC9BAAEB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirstMVCProject", "FirstMVCProject\FirstMVCProject.csproj", "{F30DD02C-199F-4016-A5C8-C5FFF4D51EDB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -93,6 +95,10 @@ Global
 		{5A02280C-BB1E-4AB0-85EB-0A18AC9BAAEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A02280C-BB1E-4AB0-85EB-0A18AC9BAAEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A02280C-BB1E-4AB0-85EB-0A18AC9BAAEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F30DD02C-199F-4016-A5C8-C5FFF4D51EDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F30DD02C-199F-4016-A5C8-C5FFF4D51EDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F30DD02C-199F-4016-A5C8-C5FFF4D51EDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F30DD02C-199F-4016-A5C8-C5FFF4D51EDB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
