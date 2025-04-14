@@ -1,9 +1,23 @@
+using Demo.DataAccess.Contexts;
+using Demo.DataAccess.Repositories;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+#region Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<AppDBContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration["ConnectionString:DefaultConnection"]);
+    //options.UseSqlServer(builder.Configuration.GetSection("ConnectionString")["DefaultConnection"]);
+    //options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+
+});
+builder.Services.AddScoped<IDepartmentRepoistory,DepartmentRepoistory>();
+#endregion
 
 var app = builder.Build();
+#region Configure the HTTP request pipeline.
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -22,6 +36,7 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/{id?}"); 
+#endregion
 
 app.Run();
