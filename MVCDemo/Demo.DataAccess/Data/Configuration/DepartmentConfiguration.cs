@@ -14,7 +14,7 @@ namespace Demo.DataAccess.Data.Configuration
             builder.Property(dept => dept.Id).UseIdentityColumn(10,10);
             builder.Property(dept => dept.Name).HasColumnType("varchar(20)");
             builder.Property(dept => dept.Code).HasColumnType("varchar(20)");
-            builder.Property(dept => dept.CreatedOn).HasDefaultValue("GETDATE()");
+            builder.Property(dept => dept.CreatedOn).HasDefaultValueSql("GETDATE()");
             builder.Property(dept => dept.LastModifiedOn).HasComputedColumnSql("GETDATE()");
         }
     }
