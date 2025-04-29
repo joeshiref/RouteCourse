@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Demo.BusinessLogic.Services
-{
+ {
     public class DepartmentService(IDepartmentRepoistory _departmentRepoistory)
     {
         // Get All Departments

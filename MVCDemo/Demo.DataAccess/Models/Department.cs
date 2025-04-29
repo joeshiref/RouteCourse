@@ -13,6 +13,6 @@ namespace Demo.DataAccess.Models
 
         public string? Description { get; set; }
 
-
+        public DateOnly CreationDate { get; set; }
     }
 }
