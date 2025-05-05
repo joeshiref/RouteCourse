@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class ProductBrand : BaseEntitiy<int>
+    public class ProductBrand : BaseEntity<int>
     {
         public string Name { get; set; }
         // Nav Property many [Products]

@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Entities
+namespace Shared.DTOs.Product
 {
-    public class ProductType : BaseEntity<int>
+    public class ProductTypeResponse
     {
+        public int Id { get; set; }
         public string Name { get; set; }
-
-        // Nav Property many [Products]
     }
 }
