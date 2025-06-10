@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Demo.DataAccess.Data.Migrations
+namespace Demo.DataAccess.Migrations
 {
     /// <inheritdoc />
     public partial class InitialCreate : Migration
@@ -20,6 +20,7 @@ namespace Demo.DataAccess.Data.Migrations
                     Name = table.Column<string>(type: "varchar(20)", nullable: false),
                     Code = table.Column<string>(type: "varchar(20)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreationDate = table.Column<DateOnly>(type: "date", nullable: false),
                     createdBy = table.Column<int>(type: "int", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: true, defaultValueSql: "GETDATE()"),
                     lastModifiedBy = table.Column<int>(type: "int", nullable: false),

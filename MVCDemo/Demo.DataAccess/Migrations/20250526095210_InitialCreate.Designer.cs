@@ -9,10 +9,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Demo.DataAccess.Data.Migrations
+namespace Demo.DataAccess.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20250414172913_InitialCreate")]
+    [Migration("20250526095210_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -41,6 +41,9 @@ namespace Demo.DataAccess.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("GETDATE()");
+
+                    b.Property<DateOnly>("CreationDate")
+                        .HasColumnType("date");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");

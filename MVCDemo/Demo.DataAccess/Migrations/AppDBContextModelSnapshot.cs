@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Demo.DataAccess.Data.Migrations
+namespace Demo.DataAccess.Migrations
 {
     [DbContext(typeof(AppDBContext))]
     partial class AppDBContextModelSnapshot : ModelSnapshot
@@ -38,6 +38,9 @@ namespace Demo.DataAccess.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("GETDATE()");
+
+                    b.Property<DateOnly>("CreationDate")
+                        .HasColumnType("date");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");

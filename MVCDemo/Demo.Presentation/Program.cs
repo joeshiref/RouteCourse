@@ -1,3 +1,4 @@
+using Demo.BusinessLogic.Services;
 using Demo.DataAccess.Contexts;
 using Demo.DataAccess.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -14,6 +15,7 @@ builder.Services.AddDbContext<AppDBContext>(options =>
 
 });
 builder.Services.AddScoped<IDepartmentRepoistory,DepartmentRepoistory>();
+builder.Services.AddScoped<IDepartmentService, DepartmentService>();
 #endregion
 
 var app = builder.Build();

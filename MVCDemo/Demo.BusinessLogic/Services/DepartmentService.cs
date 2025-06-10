@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Demo.BusinessLogic.Services
  {
-    public class DepartmentService(IDepartmentRepoistory _departmentRepoistory)
+    public class DepartmentService(IDepartmentRepoistory _departmentRepoistory) : IDepartmentService
     {
         // Get All Departments
         public IEnumerable<DepartmentDTO> GetAllDepartments()
@@ -23,7 +23,7 @@ namespace Demo.BusinessLogic.Services
         public DepartmentDetailedDTO? GetDepartmentByID(int id)
         {
             var department = _departmentRepoistory.GetByID(id);
-            if(department == null)
+            if (department == null)
                 return null;
             else
                 return department.ToDepartmentDetailedDTO();

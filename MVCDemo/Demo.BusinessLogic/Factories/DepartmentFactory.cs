@@ -16,9 +16,9 @@ namespace Demo.BusinessLogic.Factories
             {
                 Code = department.Code,
                 Name = department.Name,
-                Description = department.Description,
+                //Description = department.Description,
                 DateOfCreation = department.CreatedOn,
-                DeptId = department.Id,
+                Id = department.Id,
             };
         }
         public static DepartmentDetailedDTO ToDepartmentDetailedDTO(this Department department)
@@ -33,6 +33,7 @@ namespace Demo.BusinessLogic.Factories
                 LastModifiedBy = department.lastModifiedBy,
                 IsDeleted = department.IsDeleted,
                 CreatedBy = department.createdBy,
+                LastModifiedOn = department.LastModifiedOn,
             };
         }
         public static Department ToEntity(this CreateDepartmentDTO createDepartmentDTO)
@@ -42,7 +43,7 @@ namespace Demo.BusinessLogic.Factories
                 Code = createDepartmentDTO.Code,
                 Name = createDepartmentDTO.Name,
                 Description = createDepartmentDTO.Description,
-                CreatedOn = createDepartmentDTO.DateOfCreation,
+                CreatedOn = createDepartmentDTO.CreationDate,
             };
         }
     }
