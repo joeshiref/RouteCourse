@@ -46,5 +46,16 @@ namespace Demo.BusinessLogic.Factories
                 CreatedOn = createDepartmentDTO.CreationDate,
             };
         }
+        public static Department ToEntity(this DepartmentToUpdateDto updateDepartmentDTO)
+        {
+            return new Department()
+            {
+                Id = updateDepartmentDTO.Id,
+                Code = updateDepartmentDTO.Code,
+                Name = updateDepartmentDTO.Name,
+                Description = updateDepartmentDTO.Description,
+                CreatedOn = updateDepartmentDTO.CreationDate,
+            };
+        }
     }
 }

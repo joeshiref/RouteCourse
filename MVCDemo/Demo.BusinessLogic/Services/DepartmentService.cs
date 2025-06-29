@@ -36,12 +36,22 @@ namespace Demo.BusinessLogic.Services
             var result = _departmentRepoistory.Add(department);
             return result;
         }
-        public int? Update(CreateDepartmentDTO createDepartmentDTO)
+
+        public int? Update(DepartmentToUpdateDto updateDepartmentDTO)
         {
-            if (createDepartmentDTO == null)
+            if (updateDepartmentDTO == null)
                 return null;
-            var department = createDepartmentDTO.ToEntity();
+            var department = updateDepartmentDTO.ToEntity();
             var result = _departmentRepoistory.Update(department);
+            return result;
+        }
+
+        public int? DeleteDepartment(int id)
+        {
+            var department = _departmentRepoistory.GetByID(id);
+            if (department == null)
+                return null;
+            var result = _departmentRepoistory.Delete(department);
             return result;
         }
     }
