@@ -1,5 +1,6 @@
 ﻿using Demo.BusinessLogic.DTOs;
-using Demo.BusinessLogic.Services;
+using Demo.BusinessLogic.DTOs.Departments;
+using Demo.BusinessLogic.Services.Departments;
 using Demo.DataAccess.Repositories;
 using Demo.Presentation.ViewModels.Departments;
 using Microsoft.AspNetCore.Mvc;

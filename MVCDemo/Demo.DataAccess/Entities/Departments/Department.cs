@@ -4,15 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Demo.BusinessLogic.DTOs
+namespace Demo.DataAccess.Entities.Department
 {
-    public class DepartmentToUpdateDto
+    public class Department : BaseEntity
     {
-        public int Id { get; set; }
-        public string Name { get; set; } = null!;
+        public required string Name { get; set; }
         public string Code { get; set; } = null!;
-        public string? Description { get; set; }
-        public DateTime? CreationDate { get; set; }
 
+        public string? Description { get; set; }
+
+        public DateOnly CreationDate { get; set; }
     }
 }

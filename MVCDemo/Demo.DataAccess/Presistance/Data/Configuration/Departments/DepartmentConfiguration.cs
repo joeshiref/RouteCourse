@@ -1,11 +1,11 @@
-﻿
+﻿using Demo.DataAccess.Entities.Department;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Demo.DataAccess.Data.Configuration
+namespace Demo.DataAccess.Presistance.Data.Configuration.Departments
 {
     internal class DepartmentConfiguration : IEntityTypeConfiguration<Department>
     {
@@ -16,6 +16,7 @@ namespace Demo.DataAccess.Data.Configuration
             builder.Property(dept => dept.Code).HasColumnType("varchar(20)");
             builder.Property(dept => dept.CreatedOn).HasDefaultValueSql("GETDATE()");
             builder.Property(dept => dept.LastModifiedOn).HasComputedColumnSql("GETDATE()");
+
         }
     }
 }

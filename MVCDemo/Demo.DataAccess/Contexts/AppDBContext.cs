@@ -1,4 +1,5 @@
-﻿using Demo.DataAccess.Models;
+﻿using Demo.DataAccess.Entities.Department;
+using Demo.DataAccess.Entities.Employees;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,5 +21,6 @@ namespace Demo.DataAccess.Contexts
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
         public DbSet<Department> Departments { get; set; }
+        public DbSet<Employee> Employees { get; set; }
     }
 }

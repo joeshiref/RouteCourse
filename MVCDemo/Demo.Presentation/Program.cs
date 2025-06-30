@@ -1,6 +1,8 @@
-using Demo.BusinessLogic.Services;
+using Demo.BusinessLogic.Services.Departments;
+using Demo.BusinessLogic.Services.Employees;
 using Demo.DataAccess.Contexts;
-using Demo.DataAccess.Repositories;
+using Demo.DataAccess.Repositories.Departments;
+using Demo.DataAccess.Repositories.Employees;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,6 +18,8 @@ builder.Services.AddDbContext<AppDBContext>(options =>
 });
 builder.Services.AddScoped<IDepartmentRepoistory,DepartmentRepoistory>();
 builder.Services.AddScoped<IDepartmentService, DepartmentService>();
+builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 #endregion
 
 var app = builder.Build();

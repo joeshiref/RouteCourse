@@ -1,28 +1,28 @@
-﻿using Demo.BusinessLogic.DTOs;
+﻿using Demo.BusinessLogic.DTOs.Departments;
 using Demo.BusinessLogic.Factories;
 using Demo.DataAccess.Models;
-using Demo.DataAccess.Repositories;
+using Demo.DataAccess.Repositories.Departments;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Demo.BusinessLogic.Services
+namespace Demo.BusinessLogic.Services.Departments
  {
     public class DepartmentService(IDepartmentRepoistory _departmentRepoistory) : IDepartmentService
     {
         // Get All Departments
         public IEnumerable<DepartmentDTO> GetAllDepartments()
         {
-            var departments = _departmentRepoistory.GetAll();
+            var departments = _departmentRepoistory.GetAll().Where(d => !d.IsDeleted);
             var departmentsToReturn = departments.Select(d => d.ToDepartmentDTO());
             return departmentsToReturn;
         }
 
         public DepartmentDetailedDTO? GetDepartmentByID(int id)
         {
-            var department = _departmentRepoistory.GetByID(id);
+            var department = _departmentRepoistory.GetById(id);
             if (department == null)
                 return null;
             else
@@ -48,7 +48,7 @@ namespace Demo.BusinessLogic.Services
 
         public int? DeleteDepartment(int id)
         {
-            var department = _departmentRepoistory.GetByID(id);
+            var department = _departmentRepoistory.GetById(id);
             if (department == null)
                 return null;
             var result = _departmentRepoistory.Delete(department);
