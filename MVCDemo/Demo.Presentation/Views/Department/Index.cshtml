@@ -32,31 +32,21 @@
                     <td>@department.Code</td>
                     <td>@department.DateOfCreation</td>
                     <td>
-                        <a asp-controller="Department" asp-action="Details" asp-route-id="@department.Id" class="btn btn-primary">
-                            <i class="fas fa-eye"></i> Details
-                        </a>
+                        <!-- Details, Update, etc. -->
                     </td>
                     <td>
-                        <a asp-controller="Department" asp-action="Edit" asp-route-id="@department.Id" class="btn btn-success">
-                            <i class="fas fa-edit"></i> Edit
-                        </a>
-                    </td>
-                    <td>
-                        @* <a asp-controller="Department" asp-action="Delete" asp-route-id="@department.Id" class="btn btn-danger"> *@
-                        @*     <i class="fas fa-trash"></i> Delete *@
-                        @* </a> *@
-                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
-                            <i class="fas fa-trash"></i> Delete
+                        <!-- Delete Button triggers the correct modal -->
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal-@department.Id">
+                            Delete
                         </button>
-
                     </td>
                 </tr>
-                <!-- Delete Model-->
-                <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <!-- Delete Modal with unique ID -->
+                <div class="modal fade" id="deleteModal-@department.Id" tabindex="-1" aria-labelledby="deleteModalLabel-@department.Id" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">Delete Department</h1>
+                                <h1 class="modal-title fs-5" id="deleteModalLabel-@department.Id">Delete Department</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
@@ -71,7 +61,6 @@
                         </div>
                     </div>
                 </div>
-
             }
         </tbody>
     </table>

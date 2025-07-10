@@ -9,6 +9,7 @@ namespace Demo.Presentation.Controllers
 {
     public class DepartmentController : Controller
     {
+        #region Services
         private readonly IDepartmentService _departmentService;
         private readonly ILogger<DepartmentController> _logger;
         private readonly IWebHostEnvironment _env;
@@ -18,26 +19,40 @@ namespace Demo.Presentation.Controllers
             _departmentService = departmentService;
             _logger = logger;
             _env = env;
-        }
+        } 
+        #endregion
+
+        #region Index
         [HttpGet]
         public IActionResult Index()
         {
             var departments = _departmentService.GetAllDepartments();
             return View(departments);
         }
+        #endregion
+
+        #region Create
+
         [HttpGet]
         public IActionResult Create()
         {
             return View();
         }
         [HttpPost]
-        public IActionResult Create(CreateDepartmentDTO createDepartmentDTO)
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(DepartmentViewModel departmentVM)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    var result = _departmentService.CreateDepartment(createDepartmentDTO);
+                    var result = _departmentService.CreateDepartment(new CreateDepartmentDTO()
+                    {
+                        Name = departmentVM.Name,
+                        Code = departmentVM.Code,
+                        Description = departmentVM.Description,
+                        CreationDate = departmentVM.CreationDate
+                    });
                     if (result.HasValue)
                     {
                         return RedirectToAction("Index");
@@ -48,7 +63,7 @@ namespace Demo.Presentation.Controllers
                 {
                     // Log the exception
                     _logger.LogError(ex, "An error occurred while creating the department.");
-                    if( _env.IsDevelopment())
+                    if (_env.IsDevelopment())
                     {
                         ModelState.AddModelError("", ex.Message);
                     }
@@ -58,8 +73,11 @@ namespace Demo.Presentation.Controllers
                     }
                 }
             }
-            return View(createDepartmentDTO);
+            return View(departmentVM);
         }
+        #endregion
+
+        #region Edit
 
         [HttpGet]
         public IActionResult Details(int? id)
@@ -76,6 +94,7 @@ namespace Demo.Presentation.Controllers
             return View(department);
         }
 
+
         [HttpGet]
         public IActionResult Edit(int? id)
         {
@@ -89,16 +108,17 @@ namespace Demo.Presentation.Controllers
                 return NotFound();
             }
 
-            return View(new DepartmentEditViewModel()
+            return View(new DepartmentViewModel()
             {
                 Code = department.Code,
                 Description = department.Description,
-                DateOfCreation = department.DateOfCreation,
+                CreationDate = department.DateOfCreation,
                 Name = department.Name
             });
         }
         [HttpPost]
-        public IActionResult Edit(int id, DepartmentEditViewModel departmentVM)
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(int id, DepartmentViewModel departmentVM)
         {
             if (!ModelState.IsValid)
             {
@@ -113,7 +133,7 @@ namespace Demo.Presentation.Controllers
                     Name = departmentVM.Name,
                     Code = departmentVM.Code,
                     Description = departmentVM.Description,
-                    CreationDate = departmentVM.DateOfCreation
+                    CreationDate = departmentVM.CreationDate
                 });
                 if (result.HasValue)
                 {
@@ -131,6 +151,10 @@ namespace Demo.Presentation.Controllers
             return View(departmentVM);
         }
 
+        #endregion
+
+        #region Delete
+
         [HttpGet]
         public IActionResult Delete(int? id)
         {
@@ -146,6 +170,7 @@ namespace Demo.Presentation.Controllers
             return View(department);
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Delete(int id)
         {
             var result = _departmentService.DeleteDepartment(id);
@@ -156,7 +181,7 @@ namespace Demo.Presentation.Controllers
                 {
                     return RedirectToAction(nameof(Index));
                 }
-                else 
+                else
                 {
                     message = "Failed to delete department.";
                 }
@@ -167,8 +192,9 @@ namespace Demo.Presentation.Controllers
                 message = _env.IsDevelopment() ? ex.Message : "An unexpected error occurred. Please try again later.";
             }
             ModelState.AddModelError("", message);
-            return View(nameof(Index)); 
-        }
+            return View(nameof(Index));
+        } 
+        #endregion
 
     }
 }

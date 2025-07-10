@@ -47,18 +47,38 @@ namespace Demo.BusinessLogic.Services.Employees
 
         public IEnumerable<EmployeeDTO> GetAllEmployees()
         {
-            return _employeeRepository.GetAll().Where(e => !e.IsDeleted)
-                .Select(e => new EmployeeDTO
-                {
-                    Id = e.Id,
-                    Name = e.Name,
-                    Age = e.Age,
-                    Salary = e.Salary,
-                    IsActive = e.IsActive,
-                    Email = e.Email,
-                    Gender = e.Gender.ToString(),
-                    EmployeeType = e.EmployeeType.ToString()
-                });
+            //return _employeeRepository.GetAll().Where(e => !e.IsDeleted)
+            //    .Select(e => new EmployeeDTO
+            //    {
+            //        Id = e.Id,
+            //        Name = e.Name,
+            //        Age = e.Age,
+            //        Salary = e.Salary,
+            //        IsActive = e.IsActive,
+            //        Email = e.Email,
+            //        Gender = e.Gender.ToString(),
+            //        EmployeeType = e.EmployeeType.ToString()
+            //    });
+
+            var query = 
+            _employeeRepository.GetAllEnumerable()
+            .Where(x => !x.IsDeleted)
+            .Select(e => new EmployeeDTO
+            {
+                Id = e.Id,
+                Name = e.Name,
+                Age = e.Age,
+                Email = e.Email,
+                Salary = e.Salary,
+                Gender = e.Gender.ToString(),
+                EmployeeType = e.EmployeeType.ToString(),
+                IsActive = e.IsActive,
+            });
+            var employees = query.ToList();
+            var count = query.Count();
+            var firstEmployee = query.FirstOrDefault();
+            return query;
+
         }
 
         public EmployeeDetailedDTO? GetEmployeeById(int id)

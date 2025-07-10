@@ -10,6 +10,8 @@ namespace Demo.Presentation.Controllers
 {
     public class EmployeeController : Controller
     {
+        #region Services
+
         private readonly IEmployeeService _employeeService;
         private readonly ILogger<EmployeeController> _logger;
         private readonly IWebHostEnvironment _env;
@@ -20,6 +22,9 @@ namespace Demo.Presentation.Controllers
             _logger = logger;
             _env = env;
         }
+        #endregion
+
+        #region Index
 
         [HttpGet]
         public IActionResult Index()
@@ -27,6 +32,9 @@ namespace Demo.Presentation.Controllers
             var employees = _employeeService.GetAllEmployees();
             return View(employees);
         }
+        #endregion
+
+        #region Create
 
         [HttpGet]
         public IActionResult Create()
@@ -35,6 +43,7 @@ namespace Demo.Presentation.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken] // Action filter
         public IActionResult Create(CreateEmployeeDTO createEmployeeDTO)
         {
             if (ModelState.IsValid)
@@ -63,6 +72,9 @@ namespace Demo.Presentation.Controllers
             }
             return View(createEmployeeDTO);
         }
+        #endregion
+
+        #region Details
 
         [HttpGet]
         public IActionResult Details(int? id)
@@ -79,6 +91,10 @@ namespace Demo.Presentation.Controllers
             return View(employee);
         }
 
+        #endregion
+        
+        #region Edit
+
         [HttpGet]
         public IActionResult Edit(int? id)
         {
@@ -94,7 +110,7 @@ namespace Demo.Presentation.Controllers
 
             return View(new EmployeeToUpdateDto()
             {
-                EmployeeType = Enum.TryParse<EmployeeType>(employee.EmployeeType, out var empType)? empType:default,
+                EmployeeType = Enum.TryParse<EmployeeType>(employee.EmployeeType, out var empType) ? empType : default,
                 Gender = Enum.TryParse<Gender>(employee.Gender, out var gender) ? gender : default,
                 Name = employee.Name,
                 Age = employee.Age,
@@ -109,6 +125,7 @@ namespace Demo.Presentation.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Edit(int id, EmployeeToUpdateDto employeeDto)
         {
             if (!ModelState.IsValid)
@@ -134,6 +151,9 @@ namespace Demo.Presentation.Controllers
             }
             return View(employeeDto);
         }
+        #endregion
+
+        #region Delete
 
         [HttpGet]
         public IActionResult Delete(int? id)
@@ -149,8 +169,9 @@ namespace Demo.Presentation.Controllers
             }
             return View(employee);
         }
-        
+
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Delete(int id)
         {
             try
@@ -160,7 +181,7 @@ namespace Demo.Presentation.Controllers
                 {
                     return RedirectToAction(nameof(Index));
                 }
-                else 
+                else
                 {
                     TempData["ErrorMessage"] = "Failed to delete employee. The employee may not exist.";
                 }
@@ -171,8 +192,9 @@ namespace Demo.Presentation.Controllers
                 var message = _env.IsDevelopment() ? ex.Message : "An unexpected error occurred. Please try again later.";
                 TempData["ErrorMessage"] = message;
             }
-            
+
             return RedirectToAction(nameof(Index));
-        }
+        } 
+        #endregion
     }
 }

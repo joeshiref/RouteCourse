@@ -57,5 +57,15 @@ namespace Demo.DataAccess.Repositories.Generic
             return _dbContext.SaveChanges();
 
         }
+
+        public IQueryable<T> GetAllQueryable()
+        {
+            return _dbContext.Set<T>();
+        }
+
+        public IEnumerable<T> GetAllEnumerable()
+        {
+            return _dbContext.Set<T>();
+        }
     }
 }

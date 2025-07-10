@@ -12,6 +12,8 @@ namespace Demo.DataAccess.Repositories.Generic
         int Add(T entity);
         int Delete(T entity);
         IEnumerable<T> GetAll(bool withTracking = false);
+        IQueryable<T> GetAllQueryable();
+        IEnumerable<T> GetAllEnumerable();
         T? GetById(int id);
         int Update(T entity);
     }
