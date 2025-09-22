@@ -9,9 +9,9 @@ namespace Demo.BusinessLogic.Services.Employees
 {
     public interface IEmployeeService
     {
-        int? CreateEmployee(CreateEmployeeDTO createEmployeeDTO);
+        int? CreateEmployee(EmployeeToCreateDto createEmployeeDTO);
         IEnumerable<EmployeeDTO> GetAllEmployees();
-        EmployeeDetailedDTO? GetEmployeeById(int id);
+        EmployeeDetailsToReturnDto? GetEmployeeById(int id);
         int? Update(EmployeeToUpdateDto updateEmployeeDTO);
         bool DeleteEmployee(int id);
     }

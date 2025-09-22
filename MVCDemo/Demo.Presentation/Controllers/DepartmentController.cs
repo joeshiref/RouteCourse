@@ -26,6 +26,7 @@ namespace Demo.Presentation.Controllers
         [HttpGet]
         public IActionResult Index()
         {
+            ViewData["Message"] = "Hello from Controller => View (ViewData)";
             var departments = _departmentService.GetAllDepartments();
             return View(departments);
         }
@@ -55,6 +56,7 @@ namespace Demo.Presentation.Controllers
                     });
                     if (result.HasValue)
                     {
+                        TempData["Message"] = "Department created successfully.";
                         return RedirectToAction("Index");
                     }
                     ModelState.AddModelError("", "Failed to create department.");

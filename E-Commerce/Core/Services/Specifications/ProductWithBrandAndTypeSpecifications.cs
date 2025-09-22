@@ -1,5 +1,6 @@
 ﻿using Domain.Contracts;
 using Domain.Entities;
+using Shared;
 
 namespace Services.Specifications
 {
@@ -11,22 +12,22 @@ namespace Services.Specifications
             AddInclude(product => product.ProductType);
         }
 
-        public ProductWithBrandAndTypeSpecifications(string? sort, int? brandId, int? typeId) : 
+        public ProductWithBrandAndTypeSpecifications(ProductParametersSpecs specs) : 
             base(prod => 
-            (!brandId.HasValue || prod.BrandId==brandId.Value) &&
-            (!typeId.HasValue || prod.TypeId == typeId.Value)
+            (!specs.brandId.HasValue || prod.BrandId== specs.brandId.Value) &&
+            (!specs.typeId.HasValue || prod.TypeId == specs.typeId.Value)
             )
         {
             AddInclude(product => product.ProductBrand);
             AddInclude(product => product.ProductType);
-            if(!string.IsNullOrWhiteSpace(sort))
+            if(specs.sort is not null)
             {
-                switch(sort.ToLower().Trim())
+                switch(specs.sort)
                 {
-                    case "price":
+                    case SortOptions.Price:
                         SetOrderBy(product => product.Price);
                         break;
-                    case "price_desc":
+                    case SortOptions.PriceDesc:
                         SetOrderByDesc(product => product.Price);
                         break;
                     default:
@@ -34,6 +35,7 @@ namespace Services.Specifications
                         break;
                 }
             }
+            ApplyPagination(specs.pageIndex, specs.PageSize);
         }
     }
 }

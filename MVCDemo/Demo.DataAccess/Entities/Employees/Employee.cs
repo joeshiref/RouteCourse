@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Demo.DataAccess.Entities.Employees
 {
     public class Employee : BaseEntity
@@ -19,6 +20,12 @@ namespace Demo.DataAccess.Entities.Employees
         public DateOnly HiringDate { get; set; }
         public Gender Gender { get; set; }
         public EmployeeType EmployeeType { get; set; }
+
+        // Navigational properties [One]
+        public Department.Department? Department { get; set; }
+        public int? DepartmentId { get; set; }
+
+
 
     }
 }

@@ -3,12 +3,8 @@ using Domain.Contracts;
 using Domain.Entities;
 using Services.Abstraction;
 using Services.Specifications;
+using Shared;
 using Shared.DTOs.Product;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Services
 {
@@ -22,13 +18,20 @@ namespace Services
             var brandsResponse = mapper.Map<IEnumerable<ProductBrandResponse>>(brands);
             return brandsResponse;
         }
-
-        public async Task<IEnumerable<ProductResponse>> GetAllProductsAsync(string? sort, int? brandId, int? typeId)
+         
+        public async Task<PaginatedResult<ProductResponse>> GetAllProductsAsync(ProductParametersSpecs specs)
         {
-            var repo = unitOfWork.GetGenericRepo<Product, int>();
-            var products = await repo.GetAllAsync(new ProductWithBrandAndTypeSpecifications(sort,brandId,typeId));
+            var products = await unitOfWork.GetGenericRepo<Product, int>().GetAllAsync(new ProductWithBrandAndTypeSpecifications(specs));
+            var totalCount = await unitOfWork.GetGenericRepo<Product, int>().CountAsync(new ProductCountSpecs(specs));
             var productsResponse = mapper.Map<IEnumerable<ProductResponse>>(products);
-            return productsResponse;
+            //return productsResponse;
+            var result = new PaginatedResult<ProductResponse>(
+                specs.pageIndex, 
+                specs.PageSize,
+                totalCount, 
+                productsResponse
+                );
+            return result;
         }
 
         public async Task<IEnumerable<ProductTypeResponse>> GetAllTypesAsync()

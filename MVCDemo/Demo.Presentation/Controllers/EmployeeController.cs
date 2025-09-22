@@ -1,5 +1,6 @@
 using Demo.BusinessLogic.DTOs.Departments;
 using Demo.BusinessLogic.DTOs.Employees;
+using Demo.BusinessLogic.Services.Departments;
 using Demo.BusinessLogic.Services.Employees;
 using Demo.DataAccess.Entities.Common.Enums;
 using Demo.Presentation.ViewModels.Departments;
@@ -37,14 +38,16 @@ namespace Demo.Presentation.Controllers
         #region Create
 
         [HttpGet]
-        public IActionResult Create()
+        public IActionResult Create(/*[FromServices] IDepartmentService departmentService*/)
         {
+            //var departments = departmentService.GetAllDepartments(); // or your actual data source
+            //ViewData["Departments"] = departments ?? new List<DepartmentDTO>();
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken] // Action filter
-        public IActionResult Create(CreateEmployeeDTO createEmployeeDTO)
+        public IActionResult Create(EmployeeToCreateDto createEmployeeDTO)
         {
             if (ModelState.IsValid)
             {

@@ -26,7 +26,11 @@ namespace Persistance.Repositories
             {
                 query = query.OrderByDescending(specifications.OrderByDesc);
             }
-                return query;
+            if(specifications.IsPagingEnabled)
+            {
+                query = query.Skip(specifications.Skip).Take(specifications.Take);
+            }
+            return query;
 
 
         }

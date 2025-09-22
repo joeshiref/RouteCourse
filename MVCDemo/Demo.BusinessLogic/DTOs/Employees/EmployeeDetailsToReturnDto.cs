@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Demo.BusinessLogic.DTOs.Employees
 {
-    public class EmployeeDetailedDTO
+    public class EmployeeDetailsToReturnDto
     {
         public int Id { get; set; }
         public string Name { get; set; } = null!;

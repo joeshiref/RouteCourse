@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Demo.DataAccess.Entities.Employees;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,5 +15,11 @@ namespace Demo.DataAccess.Entities.Department
         public string? Description { get; set; }
 
         public DateOnly CreationDate { get; set; }
+
+        // Navigational properties [Many]
+        public ICollection<Employee> Employees { get; set; } = new HashSet<Employee>();
+
+
+
     }
 }

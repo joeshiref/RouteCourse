@@ -17,6 +17,13 @@ namespace Demo.DataAccess.Presistance.Data.Configuration.Departments
             builder.Property(dept => dept.CreatedOn).HasDefaultValueSql("GETDATE()");
             builder.Property(dept => dept.LastModifiedOn).HasComputedColumnSql("GETDATE()");
 
+            builder.HasMany(dept => dept.Employees)
+                   .WithOne(emp => emp.Department)
+                   .HasForeignKey(emp => emp.DepartmentId)
+                   .OnDelete(DeleteBehavior.SetNull);
+
+            
+
         }
     }
 }

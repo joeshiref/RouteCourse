@@ -16,7 +16,7 @@ namespace Demo.BusinessLogic.Services.Employees
         {
             _employeeRepository = employeeRepository;
         }
-        public int? CreateEmployee(CreateEmployeeDTO createEmployeeDTO)
+        public int? CreateEmployee(EmployeeToCreateDto createEmployeeDTO)
         {
             Employee employee = new Employee()
             {
@@ -32,7 +32,8 @@ namespace Demo.BusinessLogic.Services.Employees
                 EmployeeType = createEmployeeDTO.EmployeeType,
                 createdBy = 1, // Assuming a default value for createdBy
                 lastModifiedBy = 1, // Assuming a default value for lastModifiedBy
-                LastModifiedOn = DateTime.UtcNow
+                LastModifiedOn = DateTime.UtcNow,
+                DepartmentId = createEmployeeDTO.DepartmentId
             };
             return _employeeRepository.Add(employee); // number of rows affected
         }
@@ -81,12 +82,12 @@ namespace Demo.BusinessLogic.Services.Employees
 
         }
 
-        public EmployeeDetailedDTO? GetEmployeeById(int id)
+        public EmployeeDetailsToReturnDto? GetEmployeeById(int id)
         {
             var employee = _employeeRepository.GetById(id);
             if (employee is null) return null;
 
-            return new EmployeeDetailedDTO
+            return new EmployeeDetailsToReturnDto
             {
                 Id = employee.Id,
                 Name = employee.Name,
@@ -123,7 +124,8 @@ namespace Demo.BusinessLogic.Services.Employees
                 Gender = updateEmployeeDTO.Gender,
                 EmployeeType = updateEmployeeDTO.EmployeeType,
                 lastModifiedBy = 1, // Default value or retrieve from current user
-                LastModifiedOn = DateTime.UtcNow
+                LastModifiedOn = DateTime.UtcNow,
+                DepartmentId = updateEmployeeDTO.DepartmentId
             });
         }
     }

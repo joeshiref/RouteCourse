@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Demo.BusinessLogic.DTOs.Employees
 {
-    public class CreateEmployeeDTO
+    public class EmployeeToCreateDto
     {
         [Required]
         [MaxLength(50, ErrorMessage = "Max length should be 50 character")]
@@ -32,5 +32,7 @@ namespace Demo.BusinessLogic.DTOs.Employees
         public DateOnly HiringDate { get; set; }
         public Gender Gender { get; set; }
         public EmployeeType EmployeeType { get; set; }
+        [Display(Name = "Department")]
+        public int? DepartmentId { get; set; }
     }
 }
